@@ -8,13 +8,14 @@ HEADERS = includes/push_swap.h
 
 TARGETS = 	main.c \
 			utils.c \
-			stack.c \
-			error.c
+			error.c \
+			stack/clear_stack.c \
+			stack/generate_stack.c \
+			stack/print_stack.c
 
 SRC = $(addprefix ./src/,$(TARGETS)) 
 OBJ = $(addprefix ./$(OBJ_DIR)/,$(TARGETS:.c=.o)) 
 LIBFT = libft.a
-# VALGRIND_FLAGS = valgrind --leak-check=full --show-reachable=yes --leak-resolution=high --num-callers=100 --trace-children=yes
 VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 
 args = 1 6 4 3 2 5
@@ -42,6 +43,7 @@ $(LIBFT):
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/stack
 
 dclean: fclean
 	make -C libs/libft fclean
