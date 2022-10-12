@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:10:22 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/12 10:39:38 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:31:24 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	has_duplicates(t_list *stack)
 		tmp2 = tmp->next;
 		while (tmp2)
 		{
-			if (tmp->content == tmp2->content)
+			if (!ft_strcmp(tmp->content, tmp2->content))
 				return (1);
 			tmp2 = tmp2->next;
 		}

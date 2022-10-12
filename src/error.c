@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:19:59 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/12 10:30:20 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:34:48 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	error(const char *msg, int status)
 {
-	char	*str;
+	char	*aux;
+	char	*error_msg;
 
-	str = ft_strdup(msg);
-	ft_putstr_fd(str, 2);
-	free(str);
+	aux = ft_strdup(msg);
+	error_msg = ft_strjoin("\nError: ", aux);
+	ft_putstr_fd(error_msg, 2);
+	free(error_msg);
+	free(aux);
 	exit(status);
 }

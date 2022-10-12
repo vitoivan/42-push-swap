@@ -4,6 +4,7 @@ LFLAGS = -L. -lft
 NAME = push_swap
 
 OBJ_DIR = dist
+OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack
 HEADERS = includes/push_swap.h
 
 TARGETS = 	main.c \
@@ -31,7 +32,7 @@ valgrind: $(NAME)
 	@$(VALGRIND_FLAGS) ./$(NAME) $(args)
 
 
-$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)  
+$(NAME): $(LIBFT) $(OBJ_DIRS) $(OBJ)  
 	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: src/%.c $(HEADERS)
@@ -41,9 +42,8 @@ $(LIBFT):
 	make -C libs/libft
 	cp libs/libft/libft.a $(LIBFT) 
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/stack
+$(OBJ_DIRS):
+	mkdir -p $(OBJ_DIRS)
 
 dclean: fclean
 	make -C libs/libft fclean
