@@ -8,10 +8,10 @@ OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack
 HEADERS = includes/push_swap.h
 
 TARGETS = 	main.c \
-			utils.c \
 			error.c \
 			stack/clear_stack.c \
 			stack/generate_stack.c \
+			stack/checkers.c \
 			stack/print_stack.c
 
 SRC = $(addprefix ./src/,$(TARGETS)) 

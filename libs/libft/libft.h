@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:21:11 by victor            #+#    #+#             */
-/*   Updated: 2022/08/07 08:32:48 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:12:42 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ char				*ft_strnstr(const char *big, const char *little,
 
 /* Convert a number string to an integer */
 int					ft_atoi(const char *nptr);
+
+/* Convert a number string to an long */
+long				ft_atol(const char *nptr);
 
 /* Alocate memory and fills it with null characters */
 void				*ft_calloc(size_t nmemb, size_t size);
