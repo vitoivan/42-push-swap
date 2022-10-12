@@ -6,13 +6,29 @@ NAME = push_swap
 OBJ_DIR = dist
 HEADERS = includes/push_swap.h
 
-TARGETS = 	main.c
+TARGETS = 	main.c \
+			utils.c \
+			stack.c \
+			error.c
 
 SRC = $(addprefix ./src/,$(TARGETS)) 
 OBJ = $(addprefix ./$(OBJ_DIR)/,$(TARGETS:.c=.o)) 
 LIBFT = libft.a
+# VALGRIND_FLAGS = valgrind --leak-check=full --show-reachable=yes --leak-resolution=high --num-callers=100 --trace-children=yes
+VALGRIND_FLAGS = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
+
+args = 1 6 4 3 2 5
 
 all: $(NAME) 
+
+test: all
+	@clear
+	@./$(NAME) $(args)
+
+valgrind: $(NAME)
+	@clear
+	@$(VALGRIND_FLAGS) ./$(NAME) $(args)
+
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)  
 	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
@@ -39,4 +55,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: dclean clean fclean all re
+.PHONY: dclean clean fclean all re run

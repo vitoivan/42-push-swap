@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 18:27:28 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/12 10:59:52 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/12 10:19:59 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/10/12 10:30:20 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+void	error(const char *msg, int status)
 {
-	t_list	*stack;
+	char	*str;
 
-	if (argc < 2)
-		error("Invalid number of arguments\n", 127);
-	stack = generate_stack(argv);
-	print_stack(stack);
-	ft_printf("\n");
-	clear_stack(stack);
-	return (0);
+	str = ft_strdup(msg);
+	ft_putstr_fd(str, 2);
+	free(str);
+	exit(status);
 }
