@@ -4,15 +4,36 @@ LFLAGS = -L. -lft
 NAME = push_swap
 
 OBJ_DIR = dist
-OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack
+OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack/core $(OBJ_DIR)/actions 
 HEADERS = includes/push_swap.h
 
 TARGETS = 	main.c \
 			error.c \
+			init.c \
+			push_swap.c \
+			checkers.c \
 			stack/clear_stack.c \
 			stack/generate_stack.c \
-			stack/checkers.c \
-			stack/print_stack.c
+			stack/print_stack.c \
+			stack/core/add_back.c \
+			stack/core/add_front.c \
+			stack/core/new.c \
+			actions/sa.c \
+			actions/sb.c \
+			actions/ss.c \
+			actions/pa.c \
+			actions/pb.c \
+			actions/ra.c \
+			actions/rb.c \
+			actions/rr.c \
+			actions/rra.c \
+			actions/rrb.c \
+			actions/rrr.c \
+			actions/shift.c \
+			actions/reverse_shift.c \
+			actions/pop_first.c \
+			actions/pop_last.c \
+			actions/swap_top.c
 
 SRC = $(addprefix ./src/,$(TARGETS)) 
 OBJ = $(addprefix ./$(OBJ_DIR)/,$(TARGETS:.c=.o)) 

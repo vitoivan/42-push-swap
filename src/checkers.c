@@ -6,11 +6,11 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/12 12:35:23 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/22 08:25:24 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 static int	is_signal(char ch)
 {
@@ -19,22 +19,23 @@ static int	is_signal(char ch)
 	return (0);
 }
 
-static int	has_duplicates(t_list *stack)
+static int	has_duplicates(char **args)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
+	int	i;
+	int	j;
 
-	tmp = stack;
-	while (tmp)
+	i = 1;
+	j = 1;
+	while (args[i])
 	{
-		tmp2 = tmp->next;
-		while (tmp2)
+		j = i + 1;
+		while (args[j])
 		{
-			if (!ft_strcmp(tmp->content, tmp2->content))
+			if (!ft_strcmp(args[i], args[j]))
 				return (1);
-			tmp2 = tmp2->next;
+			j++;
 		}
-		tmp = tmp->next;
+		i++;
 	}
 	return (0);
 }
@@ -70,24 +71,17 @@ static int	check_if_is_an_integer(void *content)
 	return (1);
 }
 
-void	check_stack(t_list *stack)
+void	check_args(char **args)
 {
-	t_list	*tmp;
+	int	i;
 
-	tmp = stack;
-	while (tmp)
+	i = 1;
+	while (args[i])
 	{
-		if (!check_if_is_an_number(tmp->content)
-			|| !check_if_is_an_integer(tmp->content))
-		{
-			clear_stack(stack);
+		if (!check_if_is_an_number(args[i]) || !check_if_is_an_integer(args[i]))
 			error();
-		}
-		tmp = tmp->next;
+		i++;
 	}
-	if (has_duplicates(stack))
-	{
-		clear_stack(stack);
+	if (has_duplicates(args))
 		error();
-	}
 }

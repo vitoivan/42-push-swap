@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   pop_last.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:14:46 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 09:48:01 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/12 15:20:30 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/10/22 11:07:19 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	print_stack(t_stack *stack)
+int	pop_last(t_stack **stack)
 {
 	t_stack	*tmp;
+	int		value;
 
-	if (!stack)
-	{
-		ft_printf("(null)\n");
-		return ;
-	}
-	tmp = stack;
-	ft_printf("[ ");
-	while (tmp)
-	{
-		ft_printf("%d", tmp->value);
+	tmp = *stack;
+	while (tmp->next->next)
 		tmp = tmp->next;
-		if (tmp)
-			ft_printf(", ");
-	}
-	ft_printf(" ]\n");
+	value = tmp->next->value;
+	free(tmp->next);
+	tmp->next = NULL;
+	return (value);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:14:46 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 09:48:01 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/13 08:26:45 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/10/22 11:15:05 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
-void	print_stack(t_stack *stack)
+void	init_ctx(t_ctx *ctx, char **args)
 {
-	t_stack	*tmp;
+	char	**a;
+	int		i;
 
-	if (!stack)
-	{
-		ft_printf("(null)\n");
-		return ;
-	}
-	tmp = stack;
-	ft_printf("[ ");
-	while (tmp)
-	{
-		ft_printf("%d", tmp->value);
-		tmp = tmp->next;
-		if (tmp)
-			ft_printf(", ");
-	}
-	ft_printf(" ]\n");
+	i = 0;
+	a = ft_split("./push 2 1 3 6 5 8", ' ');
+	(void)args;
+	ctx->a = generate_stack(a);
+	ctx->b = NULL;
+	ctx->args = args;
 }

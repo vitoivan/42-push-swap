@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   add_back.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:14:46 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 09:48:01 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/22 08:01:33 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/10/22 11:02:55 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../../../includes/push_swap.h"
 
-void	print_stack(t_stack *stack)
+void	ft_stack_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*tmp;
 
-	if (!stack)
-	{
-		ft_printf("(null)\n");
-		return ;
-	}
-	tmp = stack;
-	ft_printf("[ ");
-	while (tmp)
-	{
-		ft_printf("%d", tmp->value);
+	tmp = *stack;
+	while (tmp->next)
 		tmp = tmp->next;
-		if (tmp)
-			ft_printf(", ");
-	}
-	ft_printf(" ]\n");
+	new->prev = tmp;
+	tmp->next = new;
 }

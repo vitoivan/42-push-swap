@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   sb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:14:46 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 09:48:01 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/12 15:20:30 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/10/22 10:53:50 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	print_stack(t_stack *stack)
+void	sb(t_ctx *ctx)
 {
-	t_stack	*tmp;
-
-	if (!stack)
-	{
-		ft_printf("(null)\n");
+	if (!ctx->b)
 		return ;
-	}
-	tmp = stack;
-	ft_printf("[ ");
-	while (tmp)
-	{
-		ft_printf("%d", tmp->value);
-		tmp = tmp->next;
-		if (tmp)
-			ft_printf(", ");
-	}
-	ft_printf(" ]\n");
+	if (!ctx->b->next)
+		return ;
+	swap_top(&ctx->b);
 }

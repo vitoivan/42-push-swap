@@ -6,23 +6,23 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:13:53 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/12 11:14:11 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/22 11:32:51 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-/*
- * Not needed free the content of the list because
- * the content is a pointer to the original argv
- * and it is not allocated in the heap
- */
-static void	clear_fn(void *_)
+void	clear_stack(t_stack *stack)
 {
-	(void)_;
-}
+	t_stack	*tmp;
 
-void	clear_stack(t_list *stack)
-{
-	ft_lstclear(&stack, clear_fn);
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		if (tmp)
+			free(tmp);
+	}
+	if (stack)
+		free(stack);
 }
