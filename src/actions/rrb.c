@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:20:30 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 10:56:46 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/10/26 23:40:29 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,8 @@ void	rrb(t_ctx *ctx)
 	if (!ctx->b)
 		return ;
 	reverse_shift(&ctx->b);
+	if (ctx->instructions)
+		ft_lstadd_back(&ctx->instructions, ft_lstnew(ft_strdup("rrb")));
+	else
+		ctx->instructions = ft_lstnew(ft_strdup("rrb"));
 }

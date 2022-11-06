@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 08:25:24 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/06 12:53:28 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,33 @@ static int	check_if_is_an_integer(void *content)
 	return (1);
 }
 
-void	check_args(char **args)
+void	check_args(char **args, int *args_len)
 {
-	int	i;
+	int		i;
+	char	**splitted;
 
-	i = 1;
-	while (args[i])
+	splitted = ft_split(args[1], ' ');
+	i = 0;
+	while (splitted[i])
 	{
-		if (!check_if_is_an_number(args[i]) || !check_if_is_an_integer(args[i]))
+		if (!check_if_is_an_number(splitted[i])
+			|| !check_if_is_an_integer(splitted[i]))
+		{
+			i = 0;
+			while (splitted[i])
+				if (splitted[i])
+					free(splitted[i++]);
 			error();
+		}
 		i++;
 	}
-	if (has_duplicates(args))
+	if (has_duplicates(splitted))
+	{
+		i = 0;
+		while (splitted[i])
+			if (splitted[i])
+				free(splitted[i++]);
 		error();
+	}
+	*args_len = i;
 }

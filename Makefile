@@ -4,7 +4,7 @@ LFLAGS = -L. -lft
 NAME = push_swap
 
 OBJ_DIR = dist
-OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack/core $(OBJ_DIR)/actions 
+OBJ_DIRS = $(OBJ_DIR) $(OBJ_DIR)/stack/core $(OBJ_DIR)/actions $(OBJ_DIR)/sorting
 HEADERS = includes/push_swap.h
 
 TARGETS = 	main.c \
@@ -33,7 +33,10 @@ TARGETS = 	main.c \
 			actions/reverse_shift.c \
 			actions/pop_first.c \
 			actions/pop_last.c \
-			actions/swap_top.c
+			actions/swap_top.c \
+			sorting/merge_sort.c \
+			sorting/compare_bits.c \
+			sorting/is_sorted.c
 
 SRC = $(addprefix ./src/,$(TARGETS)) 
 OBJ = $(addprefix ./$(OBJ_DIR)/,$(TARGETS:.c=.o)) 
