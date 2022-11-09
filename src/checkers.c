@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/08 22:42:29 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:04:56 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,31 @@ static void	clear_splitted_list(char **list)
 	}
 }
 
-void	check_args(char **args, int *args_len)
+void	check_args(char **args, int argc)
 {
 	int		i;
 	char	**splitted;
 
-	splitted = ft_split(args[1], ' ');
+	if (argc == 2)
+		splitted = ft_split(args[1], ' ');
+	else
+		splitted = args + 1;
 	i = 0;
 	while (splitted[i])
 	{
 		if (!check_if_is_an_number(splitted[i])
 			|| !check_if_is_an_integer(splitted[i]))
 		{
-			clear_splitted_list(splitted);
+			if (argc == 2)
+				clear_splitted_list(splitted);
 			error();
 		}
 		i++;
 	}
 	if (has_duplicates(splitted))
 	{
-		clear_splitted_list(splitted);
+		if (argc == 2)
+			clear_splitted_list(splitted);
 		error();
 	}
-	*args_len = i;
 }

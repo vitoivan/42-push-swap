@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_ctx.c                                        :+:      :+:    :+:   */
+/*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:13:53 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 00:51:55 by vivan-de         ###   ########.fr       */
+/*   Created: 2022/10/05 18:27:28 by vivan-de          #+#    #+#             */
+/*   Updated: 2022/11/09 00:51:42 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	clear_ctx(t_ctx *ctx, int args_len)
+char	**get_args(char **argv)
 {
-	clear_stack(ctx->a);
-	clear_stack(ctx->b);
-	clear_stack(ctx->index_stack);
-	clear_stack(ctx->sorted_a);
-	while (args_len > 0)
+	int		i;
+	int		str_len;
+	char	**numbers;
+
+	i = 0;
+	str_len = 1;
+	while (argv[str_len])
+		str_len++;
+	if (str_len == 2)
+		return (ft_split(argv[1], ' '));
+	else
 	{
-		if (ctx->args[args_len])
-			free(ctx->args[args_len]);
-		args_len--;
+		numbers = (char **)malloc(sizeof(char *) * (str_len));
+		while (argv[i + 1])
+		{
+			numbers[i] = ft_strdup(argv[i + 1]);
+			i++;
+		}
+		return (numbers);
 	}
-	if (ctx->args[args_len])
-		free(ctx->args[args_len]);
-	free(ctx->args);
 }

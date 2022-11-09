@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:27:28 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/08 22:27:36 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:05:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	push_swap(int argc, char **argv)
 	if (argc < 2)
 		return ;
 	args_len = 0;
-	check_args(argv, &args_len);
+	check_args(argv, argc);
 	init_ctx(&ctx, argv);
-	radix_sort(&ctx, args_len);
+	radix_sort(&ctx, ctx.argc);
 	if (ctx.instructions)
 	{
 		instructions_tmp = ctx.instructions;

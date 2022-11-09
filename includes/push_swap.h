@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:27:31 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/08 22:42:25 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:04:16 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_ctx
 
 	t_stack			*sorted_a;
 	char			**args;
+	int				argc;
 	t_list			*instructions;
 }					t_ctx;
 
@@ -43,6 +44,7 @@ typedef struct s_generate_index_stack
 
 // Utils
 int					is_signal(char ch);
+char				**get_args(char **argv);
 
 // Stack
 void				ft_stack_add_back(t_stack **stack, t_stack *new);
@@ -53,7 +55,7 @@ void				clear_stack(t_stack *stack);
 t_stack				*generate_stack(char **argv);
 
 void				error(void);
-void				check_args(char **args, int *args_len);
+void				check_args(char **args, int argc);
 void				init_ctx(t_ctx *ctx, char **args);
 void				push_swap(int argc, char **argv);
 // Actions

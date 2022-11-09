@@ -14,6 +14,7 @@ TARGETS = 	main.c \
 			checkers.c \
 			clear_ctx.c \
 			utils.c \
+			get_args.c \
 			stack/clear_stack.c \
 			stack/generate_stack.c \
 			stack/print_stack.c \
