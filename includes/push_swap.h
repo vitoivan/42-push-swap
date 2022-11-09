@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:27:31 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 01:04:16 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:20:05 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void				reverse_shift(t_stack **stack);
 
 void				merge_sort(t_stack **stack);
 int					is_sorted(t_stack *stack);
+void				clear_ctx(t_ctx *ctx);
 void				radix_sort(t_ctx *ctx, int argc);
-void				clear_ctx(t_ctx *ctx, int args_len);
 #endif

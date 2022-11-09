@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:27:28 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 01:05:36 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:19:46 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ void	push_swap(int argc, char **argv)
 {
 	t_ctx	ctx;
 	t_list	*instructions_tmp;
-	int		args_len;
 
 	if (argc < 2)
 		return ;
-	args_len = 0;
 	check_args(argv, argc);
 	init_ctx(&ctx, argv);
 	radix_sort(&ctx, ctx.argc);
@@ -34,5 +32,5 @@ void	push_swap(int argc, char **argv)
 		}
 		ft_lstclear(&ctx.instructions, free);
 	}
-	clear_ctx(&ctx, args_len);
+	clear_ctx(&ctx);
 }

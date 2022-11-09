@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:26:45 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 01:00:26 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:17:25 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	init_ctx(t_ctx *ctx, char **args)
 {
 	int	i;
 
-	ctx->args = get_args(args);
 	i = 0;
+	ctx->args = get_args(args);
+	if (!ctx->args)
+		error();
 	while (ctx->args[i])
 		i++;
 	ctx->argc = i;
