@@ -6,18 +6,11 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/06 12:53:28 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:42:29 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static int	is_signal(char ch)
-{
-	if (ch == '-' || ch == '+')
-		return (1);
-	return (0);
-}
 
 static int	has_duplicates(char **args)
 {
@@ -71,6 +64,19 @@ static int	check_if_is_an_integer(void *content)
 	return (1);
 }
 
+static void	clear_splitted_list(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i])
+	{
+		if (list[i])
+			free(list[i]);
+		i++;
+	}
+}
+
 void	check_args(char **args, int *args_len)
 {
 	int		i;
@@ -83,20 +89,14 @@ void	check_args(char **args, int *args_len)
 		if (!check_if_is_an_number(splitted[i])
 			|| !check_if_is_an_integer(splitted[i]))
 		{
-			i = 0;
-			while (splitted[i])
-				if (splitted[i])
-					free(splitted[i++]);
+			clear_splitted_list(splitted);
 			error();
 		}
 		i++;
 	}
 	if (has_duplicates(splitted))
 	{
-		i = 0;
-		while (splitted[i])
-			if (splitted[i])
-				free(splitted[i++]);
+		clear_splitted_list(splitted);
 		error();
 	}
 	*args_len = i;

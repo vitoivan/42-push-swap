@@ -1,14 +1,12 @@
-
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkers.c                                         :+:      :+:    :+:   */
+/*   compare_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 08:25:24 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:38:34 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +56,29 @@ void static	positive_sort(t_ctx *ctx, int *i, int *k, int argc)
 
 void static	generate_index_stack(t_ctx *ctx)
 {
-	t_stack	*a;
-	t_stack	*tmp;
-	int		value;
-	int		ind;
+	t_gis	gis;
 
-	a = ctx->a;
-	tmp = ctx->sorted_a;
-	while (a != NULL)
+	gis.a = ctx->a;
+	gis.tmp = ctx->sorted_a;
+	while (gis.a != NULL)
 	{
-		ind = 0;
-		value = a->value;
-		while (tmp != NULL)
+		gis.i = 0;
+		gis.value = gis.a->value;
+		while (gis.tmp != NULL)
 		{
-			if (tmp->value == value)
+			if (gis.tmp->value == gis.value)
 			{
 				if (ctx->index_stack == NULL)
-					ctx->index_stack = ft_stack_new(ind);
+					ctx->index_stack = ft_stack_new(gis.i);
 				else
-					ft_stack_add_back(&ctx->index_stack, ft_stack_new(ind));
+					ft_stack_add_back(&ctx->index_stack, ft_stack_new(gis.i));
 				break ;
 			}
-			tmp = tmp->next;
-			ind++;
+			gis.tmp = gis.tmp->next;
+			gis.i++;
 		}
-		a = a->next;
-		tmp = ctx->sorted_a;
+		gis.a = gis.a->next;
+		gis.tmp = ctx->sorted_a;
 	}
 }
 
