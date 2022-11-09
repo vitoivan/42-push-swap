@@ -17,9 +17,9 @@ TARGETS = 	main.c \
 			stack/clear_stack.c \
 			stack/generate_stack.c \
 			stack/print_stack.c \
-			stack/core/add_back.c \
-			stack/core/add_front.c \
-			stack/core/new.c \
+			stack/add_back.c \
+			stack/add_front.c \
+			stack/new.c \
 			actions/sa.c \
 			actions/sb.c \
 			actions/ss.c \

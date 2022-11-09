@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_front.c                                        :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:01:33 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 11:03:03 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:46:33 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
-void	ft_stack_add_front(t_stack **stack, t_stack *new)
+t_stack	*ft_stack_new(int value)
 {
-	t_stack	*tmp;
+	t_stack	*new;
 
-	tmp = *stack;
-	while (tmp->prev)
-		tmp = tmp->prev;
-	new->next = tmp;
-	tmp->prev = new;
-	*stack = new;
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
 }

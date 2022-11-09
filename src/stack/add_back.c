@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new.c                                              :+:      :+:    :+:   */
+/*   add_back.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:01:33 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/10/22 08:03:04 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:46:25 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
-t_stack	*ft_stack_new(int value)
+void	ft_stack_add_back(t_stack **stack, t_stack *new)
 {
-	t_stack	*new;
+	t_stack	*tmp;
 
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
+	tmp = *stack;
+	while (tmp->next)
+		tmp = tmp->next;
+	new->prev = tmp;
+	tmp->next = new;
 }
