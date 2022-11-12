@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 01:04:56 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/12 09:15:17 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	has_duplicates(char **args)
 	int	i;
 	int	j;
 
-	i = 1;
-	j = 1;
+	i = 0;
+	j = 0;
 	while (args[i])
 	{
 		j = i + 1;
@@ -33,20 +33,17 @@ static int	has_duplicates(char **args)
 	return (0);
 }
 
-static int	check_if_is_an_number(char *str)
+static int	is_a_number(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (ft_strlen(str) == 1 && is_signal(str[0]))
 		return (0);
+	if (is_signal(str[i]))
+		i++;
 	while (str[i])
 	{
-		if (is_signal(str[i]))
-		{
-			i++;
-			continue ;
-		}
 		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
@@ -54,7 +51,7 @@ static int	check_if_is_an_number(char *str)
 	return (1);
 }
 
-static int	check_if_is_an_integer(void *content)
+static int	is_a_integer(void *content)
 {
 	long	n;
 
@@ -64,44 +61,45 @@ static int	check_if_is_an_integer(void *content)
 	return (1);
 }
 
-static void	clear_splitted_list(char **list)
+static void	clear_splitted_list(char **list, int argc)
 {
 	int	i;
 
 	i = 0;
+	if (argc != 2)
+		error();
 	while (list[i])
 	{
 		if (list[i])
 			free(list[i]);
 		i++;
 	}
+	error();
 }
 
-void	check_args(char **args, int argc)
+int	check_args(char **args, int argc)
 {
 	int		i;
 	char	**splitted;
 
 	if (argc == 2)
+	{
+		if (!ft_strlen(args[1]))
+			return (1);
+		if (!is_a_number(args[1]) || !is_a_integer(args[1]))
+			error();
 		splitted = ft_split(args[1], ' ');
+	}
 	else
 		splitted = args + 1;
 	i = 0;
 	while (splitted[i])
 	{
-		if (!check_if_is_an_number(splitted[i])
-			|| !check_if_is_an_integer(splitted[i]))
-		{
-			if (argc == 2)
-				clear_splitted_list(splitted);
-			error();
-		}
+		if (!is_a_number(splitted[i]) || !is_a_integer(splitted[i]))
+			clear_splitted_list(splitted, argc);
 		i++;
 	}
 	if (has_duplicates(splitted))
-	{
-		if (argc == 2)
-			clear_splitted_list(splitted);
-		error();
-	}
+		clear_splitted_list(splitted, argc);
+	return (0);
 }

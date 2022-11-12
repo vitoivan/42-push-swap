@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:27:31 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 01:20:05 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/12 08:56:11 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void				clear_stack(t_stack *stack);
 t_stack				*generate_stack(char **argv);
 
 void				error(void);
-void				check_args(char **args, int argc);
+int					check_args(char **args, int argc);
 void				init_ctx(t_ctx *ctx, char **args);
 void				push_swap(int argc, char **argv);
 // Actions
