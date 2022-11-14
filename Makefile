@@ -20,6 +20,7 @@ TARGETS = 	main.c \
 			stack/print_stack.c \
 			stack/add_back.c \
 			stack/add_front.c \
+			stack/stack_len.c \
 			stack/new.c \
 			actions/sa.c \
 			actions/sb.c \
@@ -38,8 +39,10 @@ TARGETS = 	main.c \
 			actions/pop_last.c \
 			actions/swap_top.c \
 			sorting/merge_sort.c \
-			sorting/compare_bits.c \
-			sorting/is_sorted.c
+			sorting/radix.c \
+			sorting/is_sorted.c \
+			sorting/sort_utils.c \
+			sorting/sort.c 
 
 SRC = $(addprefix ./src/,$(TARGETS)) 
 OBJ = $(addprefix ./$(OBJ_DIR)/,$(TARGETS:.c=.o)) 
@@ -57,7 +60,6 @@ test: all
 valgrind: $(NAME)
 	@clear
 	@$(VALGRIND_FLAGS) ./$(NAME) $(args)
-
 
 $(NAME): $(LIBFT) $(OBJ_DIRS) $(OBJ)  
 	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
@@ -84,4 +86,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: dclean clean fclean all re run
+.PHONY: dclean clean fclean all re run valgrind test

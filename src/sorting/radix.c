@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compare_bits.c                                     :+:      :+:    :+:   */
+/*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/09 00:58:47 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/14 01:40:06 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	compare_byte(int number, int byte_to_compare)
 	return ((number >> byte_to_compare) & 1);
 }
 
-static void	copy_stack(t_stack *src, t_stack *dst)
+void	copy_stack(t_stack *src, t_stack *dst)
 {
 	while (src)
 	{
@@ -34,10 +34,9 @@ void static	positive_sort(t_ctx *ctx, int *i, int *k, int argc)
 	j = 1;
 	while (j++ <= argc)
 	{
-		if (compare_byte(ctx->a->value, *i))
+		if (!compare_byte(ctx->a->value, *i))
 		{
 			pb(ctx);
-			rb(ctx);
 			(*k)++;
 		}
 		else
@@ -47,14 +46,11 @@ void static	positive_sort(t_ctx *ctx, int *i, int *k, int argc)
 	if (ctx->b != NULL)
 	{
 		while (j++ < *k)
-		{
 			pa(ctx);
-			ra(ctx);
-		}
 	}
 }
 
-void static	generate_index_stack(t_ctx *ctx)
+void	generate_index_stack(t_ctx *ctx)
 {
 	t_gis	gis;
 
@@ -92,7 +88,7 @@ void	radix_sort(t_ctx *ctx, int argc)
 	if (is_sorted(ctx->index_stack))
 		return ;
 	copy_stack(ctx->index_stack, ctx->a);
-	bits_quantity = (sizeof(int) * 8) - 1;
+	bits_quantity = 16;
 	i = 0;
 	while (i < bits_quantity)
 	{
