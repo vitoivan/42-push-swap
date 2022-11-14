@@ -6,7 +6,7 @@
 /*   By: vivan-de <vivan-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:40:18 by vivan-de          #+#    #+#             */
-/*   Updated: 2022/11/14 01:40:06 by vivan-de         ###   ########.fr       */
+/*   Updated: 2022/11/14 05:11:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,8 @@ void	radix_sort(t_ctx *ctx, int argc)
 	int	i;
 	int	k;
 
-	generate_index_stack(ctx);
-	if (is_sorted(ctx->index_stack))
-		return ;
-	copy_stack(ctx->index_stack, ctx->a);
-	bits_quantity = 16;
 	i = 0;
+	bits_quantity = (sizeof(int) * 8) - 1;
 	while (i < bits_quantity)
 	{
 		k = 0;
